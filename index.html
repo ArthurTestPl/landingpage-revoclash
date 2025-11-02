@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="RevoClash - Torneios Mobile Pagos com PIX | Ganhe Dinheiro Real Jogando">
+    <meta name="description" content="Crie e participe de torneios mobile pagos com PIX. Duelos 1v1 e campeonatos com prêmios reais. Plataforma segura para gamers competitivos +18. Saque rápido e fácil!">
+    <meta name="keywords" content="torneios mobile, ganhar dinheiro jogando, PIX, esports mobile, duelos pagos, campeonatos, Brasil">
+    <title>RevoClash - Torneios Mobile Pagos com PIX | Ganhe Dinheiro Real Jogando</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #6B21A8;
+            --purple-dark: #4C1D95;
+            --purple-light: #7C3AED;
+            --black: #000000;
+            --gray-dark: #1a1a1a;
+            --gray: #2a2a2a;
+            --white: #ffffff;
+            --green: #10B981;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--black) 0%, var(--purple-dark) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="%236B21A8" stroke-width="2" opacity="0.1"/><circle cx="50" cy="50" r="25" fill="none" stroke="%237C3AED" stroke-width="2" opacity="0.15"/></svg>'),
+                url('data:image/svg+xml,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="60" height="60" fill="none" stroke="%236B21A8" stroke-width="2" opacity="0.1" transform="rotate(45 40 40)"/></svg>'),
+                radial-gradient(circle at 20% 50%, var(--purple) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, var(--purple-light) 0%, transparent 60%);
+            background-size: 100px 100px, 80px 80px, 600px 600px, 500px 500px;
+            background-position: 0 0, 50px 50px, top left, top right;
+            opacity: 0.3;
+            animation: backgroundFloat 20s ease-in-out infinite;
+            top: 0;
+            left: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--purple-light), var(--purple));
+            border-radius: 50%;
+            opacity: 0.1;
+            top: 10%;
+            right: 10%;
+            animation: float 8s ease-in-out infinite;
+            filter: blur(60px);
+        }
+
+        @keyframes backgroundFloat {
+            0%, 100% { 
+                background-position: 0 0, 50px 50px, top left, top right;
+            }
+            50% { 
+                background-position: 100px 100px, 150px 150px, bottom right, bottom left;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) translateX(0);
+            }
+            50% { 
+                transform: translateY(-30px) translateX(30px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--purple-light), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: #ddd;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 1.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(107, 33, 168, 0.7);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--purple);
+        }
+
+        .btn-secondary:hover {
+            background: var(--purple);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--purple-light);
+            text-transform: uppercase;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--gray-dark);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .step {
+            background: var(--gray);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step:hover {
+            border-color: var(--purple);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.3);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 0 auto 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--purple-light);
+        }
+
+        .step p {
+            color: #ccc;
+            font-size: 1.05rem;
+        }
+
+        /* Prizes Section */
+        .prizes {
+            background: linear-gradient(180deg, var(--black) 0%, var(--purple-dark) 100%);
+        }
+
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .prize-card {
+            background: var(--gray);
+            padding: 35px;
+            border-radius: 12px;
+            border: 2px solid var(--purple);
+            transition: all 0.3s ease;
+        }
+
+        .prize-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(107, 33, 168, 0.5);
+        }
+
+        .prize-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--purple-light);
+        }
+
+        .prize-details {
+            margin: 20px 0;
+            padding: 20px;
+            background: var(--gray-dark);
+            border-radius: 8px;
+        }
+
+        .prize-details p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .prize-highlight {
+            color: var(--green);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        /* Why Mobile */
+        .why-mobile {
+            background: var(--gray-dark);
+        }
+
+        .why-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .why-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            padding: 10px 25px;
+            border-radius: 30px;
+            margin: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Benefits */
+        .benefits {
+            background: var(--black);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--gray);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            background: var(--gray-dark);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--purple-light);
+        }
+
+        .benefit-card p {
+            color: #ccc;
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--gray-dark);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--gray);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--purple-dark);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--purple-dark);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 25px;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(180deg, var(--purple-dark) 0%, var(--black) 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--gray);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--purple);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #ddd;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            color: var(--purple-light);
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 60px 0 30px;
+            border-top: 2px solid var(--purple-dark);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--purple-light);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--purple-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--purple-light);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray);
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .prizes-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>RevoClash</h1>
+                <p class="hero-subtitle">
+                    Crie e Participe de Torneios Mobile Pagos<br>
+                    Ganhe Dinheiro Real com PIX 🎮💰
+                </p>
+                <div class="cta-buttons">
+                    <a href="#prizes" class="btn btn-primary">Criar Torneio</a>
+                    <a href="#how" class="btn btn-secondary">Participar Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Crie ou Entre</h3>
+                    <p>Escolha um torneio existente ou crie o seu próprio. Defina o valor da entrada, número de jogadores e prêmios. Pagamento instantâneo via PIX.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Jogue e Compete</h3>
+                    <p>Enfrente outros jogadores no seu game mobile favorito. Nosso sistema monitora e valida resultados com moderação ativa.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Ganhe e Saque</h3>
+                    <p>Venceu? Receba seu prêmio automaticamente na conta! Saque via PIX é rápido, seguro e sem burocracia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prizes and Formats -->
+    <section id="prizes" class="prizes">
+        <div class="container">
+            <h2 class="section-title">Formatos e Prêmios</h2>
+            <div class="prizes-grid">
+                <div class="prize-card">
+                    <h3>🏆 Torneio 50 Jogadores</h3>
+                    <div class="prize-details">
+                        <p><strong>Entrada:</strong> R$ 2,00 por jogador</p>
+                        <p><strong>Prize Pool:</strong> R$ 100,00</p>
+                        <p class="prize-highlight">🥇 1º Lugar: R$ 50,00</p>
+                        <p class="prize-highlight">🥈 2º Lugar: R$ 35,00</p>
+                        <p class="prize-highlight">🥉 3º Lugar: R$ 15,00</p>
+                    </div>
+                    <p style="color: #aaa; font-size: 0.9rem; margin-top: 15px;">
+                        Ideal para campeonatos maiores com múltiplos vencedores!
+                    </p>
+                </div>
+
+                <div class="prize-card">
+                    <h3>⚔️ Modo Duelo</h3>
+                    <div class="prize-details">
+                        <p><strong>1 vs 1:</strong> Desafie um adversário</p>
+                        <p><strong>Aposta:</strong> Ambos pagam o mesmo valor</p>
+                        <p class="prize-highlight">🏅 Vencedor leva 2x a aposta!</p>
+                        <p style="margin-top: 10px;"><strong>Exemplo:</strong></p>
+                        <p>Cada um aposta R$ 5,00</p>
+                        <p>Vencedor recebe R$ 10,00</p>
+                    </div>
+                    <p style="color: #aaa; font-size: 0.9rem; margin-top: 15px;">
+                        Rápido, intenso e lucrativo!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Mobile -->
+    <section class="why-mobile">
+        <div class="container">
+            <h2 class="section-title">Por Que Mobile?</h2>
+            <div class="why-content">
+                <p>
+                    <strong>Focamos exclusivamente em jogos mobile</strong> porque é onde está o futuro dos esports no Brasil. 
+                    Milhões de jogadores competitivos que só precisavam de uma plataforma séria para monetizar suas habilidades.
+                </p>
+                <p>
+                    Nossa tecnologia usa <strong>engenharia reversa avançada</strong> para suportar jogos que não possuem API oficial. 
+                    Isso significa que você pode competir nos seus games favoritos, mesmo sem integração direta do desenvolvedor.
+                </p>
+                <div style="margin-top: 30px;">
+                    <span class="tech-badge">🎯 Nicho Competitivo</span>
+                    <span class="tech-badge">📱 100% Mobile</span>
+                    <span class="tech-badge">🔧 Tecnologia Própria</span>
+                    <span class="tech-badge">🎮 Suporte Multi-Games</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Vantagens RevoClash</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>PIX Instantâneo</h3>
+                    <p>Pagamentos e saques via PIX. Rápido, seguro e sem taxas abusivas.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3>Segurança Total</h3>
+                    <p>Sistema anti-fraude, validação de resultados e proteção de saques garantida.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👥</div>
+                    <h3>Moderação Ativa</h3>
+                    <p>Equipe dedicada monitorando torneios 24/7 para garantir fair play.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📜</div>
+                    <h3>Regras Claras</h3>
+                    <p>Regulamento transparente, sem pegadinhas. Todos sabem como funciona.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌟</div>
+                    <h3>Comunidade Forte</h3>
+                    <p>Conecte-se com milhares de gamers competitivos do Brasil.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Zero Burocracia</h3>
+                    <p>Cadastro simples, interface intuitiva. Jogue e ganhe sem complicação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Preciso ter 18 anos para participar?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim! A RevoClash é uma plataforma exclusiva para maiores de 18 anos, conforme legislação brasileira. Verificamos documentos durante o cadastro.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona o pagamento via PIX?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ao entrar em um torneio ou duelo, você paga a taxa de entrada via PIX instantaneamente. Quando ganhar, o prêmio é creditado na sua carteira e você pode sacar a qualquer momento, também via PIX.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quais jogos são suportados?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Suportamos os principais jogos mobile competitivos do momento. Nossa tecnologia de engenharia reversa permite adicionar novos games rapidamente, mesmo sem API oficial.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como vocês garantem que não há trapaça?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Utilizamos moderação ativa 24/7, sistema de validação de resultados, análise comportamental e denúncias da comunidade. Trapaceiros são banidos permanentemente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quanto tempo demora para receber o prêmio?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Após a validação do resultado (geralmente em minutos), o prêmio é creditado automaticamente. Saques via PIX são processados em até 24 horas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Existe taxa para criar torneios?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Não! Criar torneios é gratuito. Cobramos apenas uma pequena taxa administrativa do prize pool para manter a plataforma funcionando e segura.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">O Que Dizem os Gamers</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Finalmente uma plataforma séria para competir mobile no Brasil! Já ganhei mais de R$ 500 em duelos. O saque via PIX é instantâneo mesmo!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LG</div>
+                        <div class="author-info">
+                            <h4>Lucas Gamer</h4>
+                            <p>São Paulo, SP</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Estava cético no início, mas a moderação é top e tudo funciona certinho. Criei meu primeiro torneio com 30 amigos e foi sucesso total!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MS</div>
+                        <div class="author-info">
+                            <h4>Marina Silva</h4>
+                            <p>Rio de Janeiro, RJ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Jogo mobile há anos e nunca tinha visto algo assim no Brasil. Interface limpa, sem bugs, e o sistema anti-fraude funciona de verdade. Recomendo!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RP</div>
+                        <div class="author-info">
+                            <h4>Rafael Prado</h4>
+                            <p>Belo Horizonte, MG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RevoClash</h3>
+                    <p style="color: #ccc; margin-top: 10px;">
+                        A plataforma definitiva para torneios mobile pagos no Brasil. 
+                        Jogue, compita e ganhe dinheiro real.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">📱</a>
+                        <a href="#" class="social-icon">🎮</a>
+                        <a href="#" class="social-icon">💬</a>
+                        <a href="#" class="social-icon">📺</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#how">Como Funciona</a></li>
+                        <li><a href="#prizes">Torneios</a></li>
+                        <li><a href="#">Criar Conta</a></li>
+                        <li><a href="#">Entrar</a></li>
+                        <li><a href="#">Ranking</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Suporte</h3>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Regras e Termos</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Denunciar Abuso</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Jogo Responsável</a></li>
+                        <li><a href="#">Verificação +18</a></li>
+                        <li><a href="#">Segurança PIX</a></li>
+                        <li><a href="#">CNPJ: XX.XXX.XXX/0001-XX</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 RevoClash. Todos os direitos reservados.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">
+                    🔞 Plataforma exclusiva para maiores de 18 anos | Jogue com responsabilidade
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked FAQ if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
