@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="RevoClash - Torneios Mobile Pagos com PIX | Ganhe Dinheiro Real Jogando">
     <meta name="description" content="Crie e participe de torneios mobile pagos com PIX. Duelos 1v1 e campeonatos com prêmios reais. Plataforma segura para gamers competitivos +18. Saque rápido e fácil!">
-    <meta name="keywords" content="torneios mobile, ganhar dinheiro jogando, PIX, esports mobile, duelos pagos, campeonatos, Brasil">
+    <meta name="keywords" content="torneios mobile, ganhar dinheiro jogando, PIX, esports mobile, duelos pagos, campeonatos, Brasil, clash royale">
+    
     <title>RevoClash - Torneios Mobile Pagos com PIX | Ganhe Dinheiro Real Jogando</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- 1. Configurações Globais e Variáveis --- */
         * {
             margin: 0;
             padding: 0;
@@ -20,18 +22,33 @@
         }
 
         :root {
+            /* Paleta Principal */
             --purple: #6B21A8;
             --purple-dark: #4C1D95;
             --purple-light: #7C3AED;
             --black: #000000;
-            --gray-dark: #1a1a1a;
-            --gray: #2a2a2a;
+            --gray-dark: #111111; /* Mais escuro para contraste */
+            --gray: #1a1a1a;
+            --gray-light: #2a2a2a;
             --white: #ffffff;
             --green: #10B981;
+            
+            /* Acentos Neon/Glow */
+            --pink: #D946EF; 
+            --purple-glow: rgba(107, 33, 168, 0.5);
+            --pink-glow: rgba(217, 70, 239, 0.4);
+
+            /* Tamanho do Header */
+            --header-height: 70px;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Rajdhani', sans-serif; /* Fonte "Tech" para o corpo */
+            font-weight: 400;
             background-color: var(--black);
             color: var(--white);
             line-height: 1.6;
@@ -39,9 +56,10 @@
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
+            font-family: 'Orbitron', sans-serif; /* Fonte "Gamer" para títulos */
+            font-weight: 700;
             letter-spacing: 1px;
+            color: var(--white);
         }
 
         .container {
@@ -50,70 +68,144 @@
             padding: 0 20px;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--black) 0%, var(--purple-dark) 100%);
+        section {
+            padding: 100px 0;
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            padding: 100px 0 80px;
         }
 
+        /* Efeito de "Glow" de fundo para seções */
+        .section-glow::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--white);
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        /* Linha de destaque neon para títulos */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            margin: 15px auto 0;
+            background: linear-gradient(90deg, var(--purple-light), var(--pink));
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--pink-glow);
+        }
+
+        /* --- 2. Header (Novo) --- */
+        .header {
+            width: 100%;
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8); /* Fundo "Glassmorphism" */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .nav-container {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--purple-light);
+        }
+
+        .header nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .header nav a {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #ccc;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            color: var(--white);
+        }
+
+        .btn-nav {
+            padding: 8px 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            background: var(--purple);
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--purple-light);
+            box-shadow: 0 0 15px var(--purple-glow);
+        }
+
+        /* --- 3. Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            padding-top: var(--header-height); /* Deslocamento para o header fixo */
+            position: relative;
+        }
+
+        /* Efeito "Aurora Glow" principal */
         .hero::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="%236B21A8" stroke-width="2" opacity="0.1"/><circle cx="50" cy="50" r="25" fill="none" stroke="%237C3AED" stroke-width="2" opacity="0.15"/></svg>'),
-                url('data:image/svg+xml,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="60" height="60" fill="none" stroke="%236B21A8" stroke-width="2" opacity="0.1" transform="rotate(45 40 40)"/></svg>'),
-                radial-gradient(circle at 20% 50%, var(--purple) 0%, transparent 50%),
-                radial-gradient(circle at 80% 30%, var(--purple-light) 0%, transparent 60%);
-            background-size: 100px 100px, 80px 80px, 600px 600px, 500px 500px;
-            background-position: 0 0, 50px 50px, top left, top right;
-            opacity: 0.3;
-            animation: backgroundFloat 20s ease-in-out infinite;
-            top: 0;
-            left: 0;
+            width: 1000px;
+            height: 800px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, var(--purple-dark) 0%, transparent 60%);
+            filter: blur(150px);
+            opacity: 0.6;
+            animation: pulseGlow 10s ease-in-out infinite;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, var(--purple-light), var(--purple));
-            border-radius: 50%;
-            opacity: 0.1;
-            top: 10%;
-            right: 10%;
-            animation: float 8s ease-in-out infinite;
-            filter: blur(60px);
-        }
-
-        @keyframes backgroundFloat {
-            0%, 100% { 
-                background-position: 0 0, 50px 50px, top left, top right;
-            }
-            50% { 
-                background-position: 100px 100px, 150px 150px, bottom right, bottom left;
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0) translateX(0);
-            }
-            50% { 
-                transform: translateY(-30px) translateX(30px);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        @keyframes pulseGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-45%, -55%) scale(1.1); opacity: 0.7; }
         }
 
         .hero-content {
@@ -123,37 +215,24 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 5rem; /* Maior */
             margin-bottom: 20px;
             text-transform: uppercase;
-            background: linear-gradient(90deg, var(--purple-light), var(--white));
+            background: linear-gradient(90deg, var(--white), var(--purple-light), var(--pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: slideDown 1s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            font-weight: 900;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-family: 'Rajdhani', sans-serif; /* Usando Rajdhani */
+            font-size: 1.6rem;
+            font-weight: 600; /* Mais peso */
             margin-bottom: 40px;
             color: #ddd;
             animation: fadeIn 1.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .cta-buttons {
@@ -162,17 +241,6 @@
             justify-content: center;
             flex-wrap: wrap;
             animation: slideUp 1.4s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .btn {
@@ -189,42 +257,34 @@
             display: inline-block;
         }
 
+        /* Botão Primário com Neon/Glow */
         .btn-primary {
-            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            background: linear-gradient(135deg, var(--purple), var(--pink));
             color: var(--white);
-            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.5);
+            box-shadow: 0 0 20px var(--purple-glow), 0 0 30px var(--pink-glow);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(107, 33, 168, 0.7);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 30px var(--purple-glow), 0 0 50px var(--pink-glow);
         }
 
+        /* Botão Secundário com Neon/Glow */
         .btn-secondary {
             background: transparent;
             color: var(--white);
             border: 2px solid var(--purple);
+            box-shadow: 0 0 15px var(--purple-glow);
         }
 
         .btn-secondary:hover {
             background: var(--purple);
-            transform: translateY(-3px);
+            color: var(--white);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 25px var(--purple-glow);
         }
 
-        /* Section Styles */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 60px;
-            color: var(--purple-light);
-            text-transform: uppercase;
-        }
-
-        /* How It Works */
+        /* --- 4. "Como Funciona" --- */
         .how-it-works {
             background: var(--gray-dark);
         }
@@ -241,7 +301,8 @@
             padding: 40px;
             border-radius: 12px;
             text-align: center;
-            border: 2px solid transparent;
+            border: 1px solid var(--gray-light);
+            border-top: 3px solid var(--purple); /* Destaque "Tech" */
             transition: all 0.3s ease;
             position: relative;
         }
@@ -249,37 +310,33 @@
         .step:hover {
             border-color: var(--purple);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .step-number {
+        /* Ícones SVG substituindo os números */
+        .step-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--purple), var(--purple-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 20px;
-            font-family: 'Orbitron', sans-serif;
+            margin: 0 auto 25px;
+            color: var(--purple-light); /* Cor do ícone */
+            filter: drop-shadow(0 0 10px var(--purple-glow));
         }
 
         .step h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--purple-light);
+            color: var(--white);
         }
 
         .step p {
             color: #ccc;
             font-size: 1.05rem;
+            font-weight: 600;
         }
 
-        /* Prizes Section */
+        /* --- 5. Prêmios e Formatos --- */
         .prizes {
-            background: linear-gradient(180deg, var(--black) 0%, var(--purple-dark) 100%);
+            background: var(--black);
         }
 
         .prizes-grid {
@@ -289,23 +346,33 @@
             margin-top: 40px;
         }
 
+        /* Card com borda gradiente (estilo Web3) */
         .prize-card {
+            border-radius: 12px;
+            padding: 4px; /* Espaço para a borda */
+            background: linear-gradient(135deg, var(--purple), var(--pink)); /* Borda gradiente */
+            transition: all 0.3s ease;
+        }
+        
+        .prize-card-inner {
             background: var(--gray);
             padding: 35px;
-            border-radius: 12px;
-            border: 2px solid var(--purple);
-            transition: all 0.3s ease;
+            border-radius: 10px; /* Raio interno */
+            height: 100%;
         }
 
         .prize-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(107, 33, 168, 0.5);
+            box-shadow: 0 15px 40px var(--purple-glow);
         }
 
         .prize-card h3 {
             font-size: 1.8rem;
             margin-bottom: 20px;
-            color: var(--purple-light);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .prize-details {
@@ -313,11 +380,13 @@
             padding: 20px;
             background: var(--gray-dark);
             border-radius: 8px;
+            border-left: 3px solid var(--green);
         }
 
         .prize-details p {
             margin: 10px 0;
             font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .prize-highlight {
@@ -326,7 +395,14 @@
             font-size: 1.3rem;
         }
 
-        /* Why Mobile */
+        .prize-separator {
+            border: 0;
+            height: 1px;
+            background: var(--gray-light);
+            margin: 15px 0;
+        }
+
+        /* --- 6. "Por que Mobile?" --- */
         .why-mobile {
             background: var(--gray-dark);
         }
@@ -338,30 +414,54 @@
         }
 
         .why-content p {
-            font-size: 1.2rem;
+            font-size: 1.3rem; /* Maior para leitura */
             margin-bottom: 30px;
             line-height: 1.8;
             color: #ddd;
+            font-weight: 600;
         }
 
+        .why-content p strong {
+            color: var(--purple-light);
+            font-weight: 700;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* Badges com estilo "Tech" */
         .tech-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            background: var(--gray);
+            border: 1px solid var(--purple);
+            color: var(--purple-light);
             padding: 10px 25px;
             border-radius: 30px;
-            margin: 10px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.95rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
 
-        /* Benefits */
+        .tech-badge:hover {
+            background: var(--purple);
+            color: var(--white);
+            box-shadow: 0 0 15px var(--purple-glow);
+        }
+
+        /* --- 7. Vantagens --- */
         .benefits {
             background: var(--black);
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
@@ -371,30 +471,43 @@
             padding: 30px;
             background: var(--gray);
             border-radius: 12px;
+            border: 1px solid var(--gray-light);
             transition: all 0.3s ease;
         }
 
         .benefit-card:hover {
             background: var(--gray-dark);
+            border-color: var(--purple);
             transform: translateY(-5px);
         }
 
         .benefit-icon {
             font-size: 3rem;
             margin-bottom: 20px;
+            color: var(--purple-light);
+        }
+        
+        .benefit-icon svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--purple-light);
+            stroke-width: 2;
+            fill: none;
+            filter: drop-shadow(0 0 8px var(--purple-glow));
         }
 
         .benefit-card h3 {
             font-size: 1.3rem;
             margin-bottom: 15px;
-            color: var(--purple-light);
+            color: var(--white);
         }
 
         .benefit-card p {
             color: #ccc;
+            font-weight: 600;
         }
 
-        /* FAQ */
+        /* --- 8. FAQ --- */
         .faq {
             background: var(--gray-dark);
         }
@@ -404,53 +517,73 @@
             margin: 0 auto;
         }
 
+        /* Estilo angular "Valorant" */
         .faq-item {
             background: var(--gray);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border-radius: 8px;
             overflow: hidden;
-            border: 1px solid var(--purple-dark);
+            border: 1px solid var(--gray-light);
         }
 
         .faq-question {
             padding: 25px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem; /* Maior */
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--white);
         }
 
         .faq-question:hover {
-            background: var(--purple-dark);
+            background: var(--gray-dark);
+            color: var(--purple-light);
         }
 
         .faq-answer {
             padding: 0 25px;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease-in-out;
             color: #ccc;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-top: 1px solid transparent; /* Para transição suave */
+        }
+        
+        .faq-answer p {
+            padding-bottom: 25px;
         }
 
         .faq-item.active .faq-answer {
-            padding: 25px;
             max-height: 500px;
+            border-top: 1px solid var(--purple-dark);
+        }
+        
+        .faq-item.active .faq-question {
+            color: var(--purple-light);
         }
 
+        /* Ícone '+' que vira 'x' */
         .faq-icon {
             transition: transform 0.3s ease;
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1;
+            color: var(--purple-light);
         }
 
         .faq-item.active .faq-icon {
-            transform: rotate(180deg);
+            transform: rotate(45deg);
         }
 
-        /* Testimonials */
+        /* --- 9. Testemunhos --- */
         .testimonials {
-            background: linear-gradient(180deg, var(--purple-dark) 0%, var(--black) 100%);
+            background: var(--black);
         }
 
         .testimonials-grid {
@@ -464,14 +597,32 @@
             background: var(--gray);
             padding: 30px;
             border-radius: 12px;
+            border: 1px solid var(--gray-light);
             border-left: 4px solid var(--purple);
+            position: relative;
+        }
+
+        /* Adicionando aspas "flutuantes" */
+        .testimonial-card::before {
+            content: '“';
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 6rem;
+            color: var(--purple);
+            position: absolute;
+            top: 0px;
+            left: 10px;
+            opacity: 0.2;
+            line-height: 1;
         }
 
         .testimonial-text {
             font-style: italic;
-            margin-bottom: 20px;
-            font-size: 1.05rem;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
             color: #ddd;
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
         }
 
         .testimonial-author {
@@ -483,73 +634,81 @@
         .author-avatar {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            background: linear-gradient(135deg, var(--purple), var(--pink));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
             font-size: 1.3rem;
+            font-family: 'Orbitron', sans-serif;
+            border: 2px solid var(--purple-light);
         }
 
         .author-info h4 {
-            font-size: 1rem;
-            color: var(--purple-light);
+            font-size: 1.1rem;
+            color: var(--white);
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
         }
 
         .author-info p {
             font-size: 0.9rem;
             color: #999;
+            font-weight: 600;
         }
 
-        /* Footer */
+        /* --- 10. Footer (Centralizado) --- */
         footer {
-            background: var(--black);
+            background: var(--gray-dark);
             padding: 60px 0 30px;
             border-top: 2px solid var(--purple-dark);
+            text-align: center; /* Simplificado e centralizado */
         }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.3rem;
+        
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
             margin-bottom: 20px;
-            color: var(--purple-light);
+            display: block;
         }
 
-        .footer-section ul {
-            list-style: none;
+        .footer-links {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
         }
-
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section a {
+        
+        .footer-links a {
             color: #ccc;
             text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
             transition: color 0.3s ease;
         }
 
-        .footer-section a:hover {
+        .footer-links a:hover {
             color: var(--purple-light);
         }
 
         .social-links {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
         }
 
         .social-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--purple);
+            width: 45px;
+            height: 45px;
+            background: var(--gray);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -558,359 +717,451 @@
             color: var(--white);
             font-size: 1.2rem;
             transition: all 0.3s ease;
+            border: 1px solid var(--gray-light);
+        }
+        
+        .social-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--white);
+            transition: fill 0.3s ease;
         }
 
         .social-icon:hover {
-            background: var(--purple-light);
+            background: var(--purple);
             transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--purple-glow);
+        }
+
+        .social-icon:hover svg {
+            fill: var(--white);
         }
 
         .footer-bottom {
-            text-align: center;
             padding-top: 30px;
             border-top: 1px solid var(--gray);
             color: #999;
+            font-weight: 600;
         }
 
-        /* Responsive */
+        .footer-bottom p {
+            margin: 5px 0;
+        }
+
+        /* --- 11. Animações de Entrada --- */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        /* --- 12. Responsividade --- */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
             .section-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
+            /* Header Responsivo */
+            .header {
+                --header-height: 60px;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .header nav {
+                gap: 10px; /* Reduz gap */
+            }
+            .header nav a {
+                font-size: 0.9rem;
+            }
+            .header nav a:not(.btn-nav) {
+                 /* Esconde links de texto em telas pequenas */
+                 /* Você pode adicionar um menu hamburguer aqui com JS */
+            }
+            .btn-nav {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            /* Hero Responsivo */
+            .hero {
+                min-height: 80vh;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
             .cta-buttons {
                 flex-direction: column;
+                gap: 15px;
+                align-items: center;
             }
-
             .btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 320px;
             }
 
+            /* Grids Responsivos */
             .prizes-grid,
-            .testimonials-grid {
+            .testimonials-grid,
+            .benefits-grid {
                 grid-template-columns: 1fr;
             }
+
+            .why-content p {
+                font-size: 1.1rem;
+            }
         }
+
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>RevoClash</h1>
-                <p class="hero-subtitle">
-                    Crie e Participe de Torneios Mobile Pagos<br>
-                    Ganhe Dinheiro Real com PIX
-                </p>
-                <div class="cta-buttons">
-                    <center>
-                    <a href="#prizes" class="btn btn-primary">Criar Torneio</a>
-                    <a href="#how" class="btn btn-secondary">Participar Agora</a>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- How It Works -->
-    <section id="how" class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">Como Funciona</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Login</h3>
-                    <p>Faça login com a sua conta dos principais jogos no mercado</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Jogue e Compete</h3>
-                    <p>Enfrente outros jogadores no seu game mobile favorito. Nosso sistema monitora e valida resultados com sistemas integrados aos dados reais dos jogos.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Ganhe e Saque</h3>
-                    <p>Venceu? Receba seu prêmio automaticamente na conta! Saque via PIX é rápido, seguro e sem burocracia.</p>
-                </div>
-            </div>
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">RevoClash</a>
+            <nav>
+                <a href="#how">Como Funciona</a>
+                <a href="#prizes">Formatos</a>
+                <a href="#faq">FAQ</a>
+                <a href="#" class="btn btn-nav">Entrar</a>
+            </nav>
         </div>
-    </section>
+    </header>
 
-    <!-- Prizes and Formats -->
-    <section id="prizes" class="prizes">
-        <div class="container">
-            <h2 class="section-title">Formatos e Prêmios</h2>
-            <div class="prizes-grid">
-                <div class="prize-card">
-                    <h3>🏆 Torneio 10-50 Jogadores</h3>
-                    <div class="prize-details">
-                        <p><strong>Entrada:</strong> R$ 2,00 por jogador</p>
-                        <p><strong>Prize Pool:</strong> R$ 100,00</p>
-                        <p class="prize-highlight"> 🥇 - 1º Lugar: R$ 50,00</p>
-                        <p class="prize-highlight"> 🥈 - 2º Lugar: R$ 35,00</p>
-                        <p class="prize-highlight"> 🥉 - 3º Lugar: R$ 15,00</p>
-                    </div>
-                    <p style="color: #aaa; font-size: 0.9rem; margin-top: 15px;">
-                        Ideal para campeonatos maiores com múltiplos vencedores!
+    <main>
+
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>RevoClash</h1>
+                    <p class="hero-subtitle">
+                        Crie e Participe de Torneios Mobile Pagos<br>
+                        Ganhe Dinheiro Real com PIX
                     </p>
-                </div>
-
-                <div class="prize-card">
-                    <h3>⚔️ Modo Duelo</h3>
-                    <div class="prize-details">
-                        <p><strong>1 vs 1:</strong> Desafie um adversário</p>
-                        <p><strong>Aposta:</strong> Ambos pagam o mesmo valor</p>
-                        <p class="prize-highlight">🏅 Vencedor leva 2x a aposta!</p>
-                        <hr>
-                        <center><p style="margin-top: 10px;"><strong>Por Exemplo</strong></strong></p></center><hr>
-                        <p><strong>Depósito: </strong> <span class="prize-highlight">⠀R$ 5.00</span> </p>
-                        <p>Prêmio: <span class="prize-highlight">⠀R$ 10.00</span>  </p>
-                    </div>
-                    <p style="color: #aaa; font-size: 0.9rem; margin-top: 15px;">
-                        Rápido, intenso e lucrativo!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Mobile -->
-    <section class="why-mobile">
-        <div class="container">
-            <h2 class="section-title">Por Que Mobile?</h2>
-            <div class="why-content">
-                <p>
-                    <strong>Focamos exclusivamente em jogos mobile</strong> porque é onde está o futuro dos esports no Brasil. 
-                    Milhões de jogadores competitivos que só precisavam de uma plataforma séria para monetizar suas habilidades.
-                </p>
-                <p>
-                    Nossa tecnologia usa <strong>engenharia reversa avançada</strong> para suportar jogos que não possuem API oficial. 
-                    Isso significa que você pode competir nos seus games favoritos, mesmo sem integração direta do desenvolvedor.
-                </p>
-                <div style="margin-top: 30px;">
-                    <span class="tech-badge">Nicho Competitivo</span>
-                    <span class="tech-badge">100% Mobile</span>
-                    <span class="tech-badge">Tecnologia Própria</span>
-                    <span class="tech-badge">Suporte Multi-Games</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits -->
-    <section class="benefits">
-        <div class="container">
-            <h2 class="section-title">Vantagens RevoClash</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>PIX Instantâneo</h3>
-                    <p>Pagamentos e saques via PIX. Rápido, seguro e sem taxas abusivas.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🛡️</div>
-                    <h3>Segurança Total</h3>
-                    <p>Sistema anti-fraude, validação de resultados e proteção de saques garantida.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">👥</div>
-                    <h3>Moderação Ativa</h3>
-                    <p>Equipe dedicada monitorando torneios 24/7 para garantir fair play.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📜</div>
-                    <h3>Regras Claras</h3>
-                    <p>Regulamento transparente, sem pegadinhas. Todos sabem como funciona.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌟</div>
-                    <h3>Comunidade Forte</h3>
-                    <p>Conecte-se com milhares de gamers competitivos do Brasil.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🚀</div>
-                    <h3>Zero Burocracia</h3>
-                    <p>Cadastro simples, interface intuitiva. Jogue e ganhe sem complicação.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">Perguntas Frequentes</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Preciso ter 18 anos para participar?</span>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sim! A RevoClash é uma plataforma exclusiva para maiores de 18 anos, conforme legislação brasileira.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Como funciona o pagamento via PIX?</span>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Ao cadastrar sua chave PIX, você pode depositar dinheiro em sua carteira. Quando ganhar, o prêmio é creditado na sua carteira e você pode sacar a qualquer momento, também via PIX.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Quais jogos são suportados?</span>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Suportamos os principais jogos mobile competitivos do momento, com nosso principal sendo o ClashRoyale. Nossa tecnologia de engenharia reversa permite adicionar novos games rapidamente, mesmo sem API oficial.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Como vocês garantem que não há trapaça?</span>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Utilizamos moderação ativa 24/7, além do nosso sistema integrado aos dados dos jogos que permitem uma análise das partidas de forma automática</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Quanto tempo demora para receber o prêmio?</span>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Após a validação do resultado, o prêmio é creditado na sua carteira automaticamente. Saques via PIX são processados em até 24 horas.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Existe taxa para criar torneios?</span>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Não! Criar torneios é gratuito. Cobramos apenas uma pequena taxa administrativa do prize pool para manter a plataforma funcionando e segura.</p>
+                    <div class="cta-buttons">
+                        <a href="#prizes" class="btn btn-primary">Criar Torneio</a>
+                        <a href="#how" class="btn btn-secondary">Participar Agora</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">O Que Dizem os Gamers</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Finalmente uma plataforma séria para competir mobile no Brasil! Já ganhei mais de R$ 500 em duelos. O saque via PIX é instantâneo mesmo!"
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">LG</div>
-                        <div class="author-info">
-                            <h4>Lucas Gamer</h4>
-                            <p>São Paulo, SP</p>
+        <section id="how" class="how-it-works section-glow">
+            <div class="container">
+                <h2 class="section-title">Como Funciona</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A1.5 1.5 0 0118 21.75H6a1.5 1.5 0 01-1.499-1.632z" />
+                            </svg>
+                        </div>
+                        <h3>Login</h3>
+                        <p>Faça login com a sua conta dos principais jogos no mercado.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12A2.25 2.25 0 0020.25 14.25V3m-16.5 0h16.5m-16.5 0v11.25A2.25 2.25 0 006 16.5h12A2.25 2.25 0 0020.25 14.25V3" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 13.5l3 3m0 0l3-3m-3 3V3.75" />
+                            </svg>
+                        </div>
+                        <h3>Jogue e Compete</h3>
+                        <p>Enfrente outros jogadores. Nosso sistema monitora e valida resultados com dados reais dos jogos.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.768 0-1.536.219-2.121.659L9 15.182z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.768 0-1.536.219-2.121.659L9 15.182z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 15.75h19.5" />
+                            </svg>
+                        </div>
+                        <h3>Ganhe e Saque</h3>
+                        <p>Venceu? Receba seu prêmio automaticamente! Saque via PIX rápido, seguro e sem burocracia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prizes" class="prizes section-glow">
+            <div class="container">
+                <h2 class="section-title">Formatos e Prêmios</h2>
+                <div class="prizes-grid">
+                    
+                    <div class="prize-card">
+                        <div class="prize-card-inner">
+                            <h3>🏆 Torneio 10-50 Jogadores</h3>
+                            <div class="prize-details">
+                                <p><strong>Entrada:</strong> R$ 2,00 por jogador</p>
+                                <p><strong>Prize Pool:</strong> R$ 100,00</p>
+                                <p class="prize-highlight"> 🥇 - 1º Lugar: R$ 50,00</p>
+                                <p class="prize-highlight"> 🥈 - 2º Lugar: R$ 35,00</p>
+                                <p class="prize-highlight"> 🥉 - 3º Lugar: R$ 15,00</p>
+                            </div>
+                            <p style="color: #aaa; font-size: 0.9rem; margin-top: 15px;">
+                                Ideal para campeonatos maiores com múltiplos vencedores!
+                            </p>
                         </div>
                     </div>
-                </div>
 
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Estava cético no início, mas a moderação é top e tudo funciona certinho. Criei meu primeiro torneio com 30 amigos e foi sucesso total!"
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MS</div>
-                        <div class="author-info">
-                            <h4>Marina Silva</h4>
-                            <p>Rio de Janeiro, RJ</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Jogo mobile há anos e nunca tinha visto algo assim no Brasil. Interface limpa, sem bugs, e o sistema anti-fraude funciona de verdade. Recomendo!"
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RP</div>
-                        <div class="author-info">
-                            <h4>Rafael Prado</h4>
-                            <p>Belo Horizonte, MG</p>
+                    <div class="prize-card">
+                        <div class="prize-card-inner">
+                            <h3>⚔️ Modo Duelo</h3>
+                            <div class="prize-details">
+                                <p><strong>1 vs 1:</strong> Desafie um adversário</p>
+                                <p><strong>Aposta:</strong> Ambos pagam o mesmo valor</p>
+                                <p class="prize-highlight">🏅 Vencedor leva 2x a aposta!</p>
+                                
+                                <hr class="prize-separator">
+                                <p style="text-align: center; margin: 10px 0; font-weight: 700;">Exemplo:</p>
+                                
+                                <p><strong>Depósito: </strong> <span class="prize-highlight" style="float: right;">R$ 5.00</span></p>
+                                <p><strong>Prêmio: </strong> <span class="prize-highlight" style="float: right;">R$ 10.00</span></p>
+                            </div>
+                            <p style="color: #aaa; font-size: 0.9rem; margin-top: 15px;">
+                                Rápido, intenso e lucrativo!
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <section class="why-mobile section-glow">
+            <div class="container">
+                <h2 class="section-title">Por Que Mobile?</h2>
+                <div class="why-content">
+                    <p>
+                        <strong>Focamos exclusivamente em jogos mobile</strong> porque é onde está o futuro dos esports no Brasil.
+                        Milhões de jogadores competitivos que só precisavam de uma plataforma séria para monetizar suas habilidades.
+                    </p>
+                    <p>
+                        Nossa tecnologia usa <strong>engenharia reversa avançada</strong> para suportar jogos que não possuem API oficial.
+                        Isso significa que você pode competir nos seus games favoritos, mesmo sem integração direta.
+                    </p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Nicho Competitivo</span>
+                        <span class="tech-badge">100% Mobile</span>
+                        <span class="tech-badge">Tecnologia Própria</span>
+                        <span class="tech-badge">Suporte Multi-Games</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits section-glow">
+            <div class="container">
+                <h2 class="section-title">Vantagens RevoClash</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            </svg>
+                        </div>
+                        <h3>PIX Instantâneo</h3>
+                        <p>Pagamentos e saques via PIX. Rápido, seguro e sem taxas abusivas.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                            </svg>
+                        </div>
+                        <h3>Segurança Total</h3>
+                        <p>Sistema anti-fraude, validação de resultados e proteção de saques.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-4.682 2.72a3 3 0 01-4.682 0 3 3 0 01-4.682-2.72m4.682 2.72v.75A2.25 2.25 0 018.25 21h7.5A2.25 2.25 0 0118 18.75v-.75m-4.682 2.72a9.094 9.094 0 01-3.741-.479 3 3 0 01-4.682-2.72m4.682 2.72v-.75a2.25 2.25 0 00-2.25-2.25h-7.5A2.25 2.25 0 003 15.75v.75m11.134 0a3 3 0 00-4.682 0m4.682 0a3 3 0 01-4.682 0m-4.682 2.72a3 3 0 00-4.682 0m4.682 0a3 3 0 01-4.682 0m0 0v.75A2.25 2.25 0 013 18.75v-.75m1.5-15a3 3 0 00-3 3v.75a3 3 0 003 3v.75a3 3 0 003 3v.75a3 3 0 003 3h.75a3 3 0 003-3v-.75a3 3 0 003-3v-.75a3 3 0 003-3v-.75a3 3 0 00-3-3h-.75a3 3 0 00-3 3v.75a3 3 0 00-3 3v.75a3 3 0 00-3 3v-.75a3 3 0 00-3-3v-.75a3 3 0 00-3-3h-.75z" />
+                            </svg>
+                        </div>
+                        <h3>Moderação Ativa</h3>
+                        <p>Equipe dedicada monitorando torneios 24/7 para garantir fair play.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3>Regras Claras</h3>
+                        <p>Regulamento transparente, sem pegadinhas. Todos sabem como funciona.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c.966 0 1.899.199 2.78.547M12 20.25a8.25 8.25 0 00-2.78.547m2.78-.547a8.25 8.25 0 01-2.78.547m2.78.547c.966 0 1.899.199 2.78.547m-5.56 0a8.25 8.25 0 00-2.78.547m2.78-.547a8.25 8.25 0 01-2.78.547m2.78.547c.966 0 1.899.199 2.78.547m-5.56 0a8.25 8.25 0 00-2.78.547m2.78-.547a8.25 8.25 0 01-2.78.547m2.78.547c-.966 0-1.899.199-2.78.547m5.56 0a8.25 8.25 0 01-2.78.547m2.78-.547a8.25 8.25 0 00-2.78.547m2.78.547c-.966 0-1.899.199-2.78.547m5.56 0a8.25 8.25 0 01-2.78.547m2.78-.547a8.25 8.25 0 00-2.78.547m2.78.547c.966 0 1.899.199 2.78.547M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </div>
+                        <h3>Comunidade Forte</h3>
+                        <p>Conecte-se com milhares de gamers competitivos do Brasil.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.25c-2.59 0-5.04.8-7.02 2.16v4.8l5.84 2.58m0 0a6 6 0 01-5.84-7.38v-4.8m5.84 7.38a6 6 0 015.84 7.38m0 0a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.25c-2.59 0-5.04.8-7.02 2.16v4.8l5.84 2.58m0 0a6 6 0 01-5.84-7.38v-4.8m5.84 7.38a6 6 0 015.84 7.38" />
+                            </svg>
+                        </div>
+                        <h3>Zero Burocracia</h3>
+                        <p>Cadastro simples, interface intuitiva. Jogue e ganhe sem complicação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq section-glow">
+            <div class="container">
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Preciso ter 18 anos para participar?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim! A RevoClash é uma plataforma exclusiva para maiores de 18 anos, conforme legislação brasileira.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Como funciona o pagamento via PIX?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Ao cadastrar sua chave PIX, você pode depositar. Quando ganhar, o prêmio é creditado na sua carteira e você pode sacar a qualquer momento, também via PIX.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Quais jogos são suportados?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Suportamos os principais jogos mobile competitivos, com nosso principal sendo o Clash Royale. Nossa tecnologia permite adicionar novos games rapidamente.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Como vocês garantem que não há trapaça?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Utilizamos moderação ativa 24/7, além do nosso sistema integrado aos dados dos jogos que permitem uma análise automática das partidas.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Quanto tempo demora para receber o prêmio?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Após a validação, o prêmio é creditado na sua carteira automaticamente. Saques via PIX são processados em até 24 horas.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Existe taxa para criar torneios?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Não! Criar torneios é gratuito. Cobramos apenas uma pequena taxa administrativa do prize pool para manter a plataforma funcionando.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials section-glow">
+            <div class="container">
+                <h2 class="section-title">O Que Dizem os Gamers</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Finalmente uma plataforma séria para competir mobile no Brasil! Já ganhei mais de R$ 500 em duelos. O saque via PIX é instantâneo mesmo!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">LG</div>
+                            <div class="author-info">
+                                <h4>Lucas Gamer</h4>
+                                <p>São Paulo, SP</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Estava cética no início, mas a moderação é top e tudo funciona certinho. Criei meu primeiro torneio com 30 amigos e foi sucesso total!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MS</div>
+                            <div class="author-info">
+                                <h4>Marina Silva</h4>
+                                <p>Rio de Janeiro, RJ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Jogo mobile há anos e nunca tinha visto algo assim no Brasil. Interface limpa, sem bugs, e o sistema anti-fraude funciona de verdade. Recomendo!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RP</div>
+                            <div class="author-info">
+                                <h4>Rafael Prado</h4>
+                                <p>Belo Horizonte, MG</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>RevoClash</h3>
-                    <p style="color: #ccc; margin-top: 10px;">
-                        A plataforma definitiva para torneios mobile pagos no Brasil. 
-                        Jogue, compita e ganhe dinheiro real.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="social-icon">📱</a>
-                        <a href="#" class="social-icon">🎮</a>
-                        <a href="#" class="social-icon">💬</a>
-                        <a href="#" class="social-icon">📺</a>
-                    </div>
-                </div>
+            <a href="#" class="footer-logo">RevoClash</a>
+            
+            <div class="footer-links">
+                <a href="#how">Como Funciona</a>
+                <a href="#prizes">Torneios</a>
+                <a href="#faq">FAQ</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Jogo Responsável</a>
+            </div>
 
-                <div class="footer-section">
-                    <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="#how">Como Funciona</a></li>
-                        <li><a href="#prizes">Torneios</a></li>
-                        <li><a href="#">Criar Conta</a></li>
-                        <li><a href="#">Entrar</a></li>
-                        <li><a href="#">Ranking</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Suporte</h3>
-                    <ul>
-                        <li><a href="#">Central de Ajuda</a></li>
-                        <li><a href="#">Regras e Termos</a></li>
-                        <li><a href="#">Política de Privacidade</a></li>
-                        <li><a href="#">Denunciar Abuso</a></li>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="#">Termos de Uso</a></li>
-                        <li><a href="#">Jogo Responsável</a></li>
-                        <li><a href="#">Verificação +18</a></li>
-                        <li><a href="#">Segurança PIX</a></li>
-                        <li><a href="#">CNPJ: XX.XXX.XXX/0001-XX</a></li>
-                    </ul>
-                </div>
+            <div class="social-links">
+                <a href="#" class="social-icon" aria-label="Discord">
+                    <svg viewBox="0 0 245 240"><path d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zM140.9 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path d="M189.5 20.1l-32.4 171.5-33.5-16.5-5.4-14.5c-3.6 4.6-10.6 10.9-22.1 10.9-16.5 0-28.3-13.6-28.3-29.5 0-16 11.4-29.5 27.6-29.5 10.8 0 18.2 5.7 22 9.1l2.2-1.6-8.9-12.8-21.6-30.9c-1.5-2.2-3.1-4.2-4.6-6.1-7-10-16-10-16-10l-1.3-.2c-12.2 0-23.4 9.3-25.9 21.6l-32.4 171.5c-4.4 23.4 15.3 40.8 38.3 40.8 7.3 0 14.1-2.5 19.6-6.9l33.5-16.5 5.4-14.5c3.6 4.6 10.6 10.9 22.1 10.9 16.5 0 28.3-13.6 28.3-29.5 0-16-11.4-29.5-27.6-29.5 10.8 0 18.2 5.7 22 9.1l2.2-1.6 8.9-12.8 21.6-30.9c1.5-2.2 3.1-4.2 4.6-6.1 7-10 16-10 16-10l1.3-.2c12.2 0 23.4 9.3 25.9 21.6z"/></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.949.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Twitter X">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Twitch">
+                    <svg viewBox="0 0 24 24"><path d="M2.763 3.424A2.023 2.023 0 0 0 1 5.447v13.106c0 1.118.905 2.023 2.023 2.023h4.046v3.034h2.023l3.035-3.034h4.046c1.118 0 2.023-.905 2.023-2.023V5.447c0-1.118-.905-2.023-2.023-2.023H3.023a2.203 2.203 0 0 0-.26 0zm1.763 1.012h12.948c.56 0 1.012.453 1.012.1v9.049c0 .56-.453 1.012-1.012 1.012h-4.558l-3.034 3.034v-3.034H4.526c-.56 0-1.012-.453-1.012-1.012V4.436zm4.808 3.794v5.31h1.763V8.23H9.334zm4.808 0v5.31h1.763V8.23h-1.763z"/></svg>
+                </a>
             </div>
 
             <div class="footer-bottom">
@@ -918,6 +1169,7 @@
                 <p style="margin-top: 10px; font-size: 0.9rem;">
                     Ainda em Desenvolvimento.
                 </p>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">CNPJ: XX.XXX.XXX/0001-XX | Jogo Responsável: +18</p>
             </div>
         </div>
     </footer>
@@ -929,13 +1181,19 @@
                 const faqItem = question.parentElement;
                 const isActive = faqItem.classList.contains('active');
                 
-                // Close all FAQs
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
+                // Close all FAQs (Opcional: descomente para fechar outros)
+                // document.querySelectorAll('.faq-item').forEach(item => {
+                //     item.classList.remove('active');
+                // });
                 
-                // Open clicked FAQ if it wasn't active
-                if (!isActive) {
+                // Toggle clicked FAQ
+                if (isActive) {
+                    faqItem.classList.remove('active');
+                } else {
+                    // Fecha todos os outros antes de abrir o novo
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
                     faqItem.classList.add('active');
                 }
             });
@@ -945,11 +1203,27 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                
+                // Ignora o link do logo/hero para não bugar
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
+
+                const target = document.querySelector(targetId);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    // Ajusta o scroll para compensar o header fixo
+                    const headerOffset = document.querySelector('.header').offsetHeight;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
