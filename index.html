@@ -178,40 +178,121 @@
             box-shadow: 0 0 15px var(--purple-glow);
         }
 
-        /* --- 3. Hero Section --- */
+        /* --- 3. Hero Section (com nova animação de fundo) --- */
         .hero {
             min-height: 100vh;
             background: var(--black);
             display: flex;
             align-items: center;
-            padding-top: var(--header-height); /* Deslocamento para o header fixo */
+            padding-top: var(--header-height);
             position: relative;
+            overflow: hidden; /* Garante que as formas não saiam da tela */
         }
 
-        /* Efeito "Aurora Glow" principal */
-        .hero::before {
-            content: '';
+        /* Container para o fundo animado */
+        .animated-background {
             position: absolute;
-            width: 1000px;
-            height: 800px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, var(--purple-dark) 0%, transparent 60%);
-            filter: blur(150px);
-            opacity: 0.6;
-            animation: pulseGlow 10s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--gray-dark) 0%, var(--black) 50%, var(--purple-dark) 100%);
+            background-size: 200% 200%; /* Permite o movimento do gradiente */
+            animation: gradientShift 15s ease infinite alternate; /* Animação do gradiente */
+            z-index: 0;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-            50% { transform: translate(-45%, -55%) scale(1.1); opacity: 0.7; }
+        /* Animação do gradiente */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
+
+        /* Formas animadas */
+        .shape {
+            position: absolute;
+            background-color: var(--purple-light);
+            opacity: 0.1; /* Transparência para não sobrecarregar */
+            filter: blur(50px); /* Efeito de brilho */
+            animation-duration: 20s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            z-index: 1; /* Abaixo do conteúdo do hero */
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%; /* Círculo */
+            top: -10%;
+            left: -15%;
+            animation-name: moveShape1;
+            animation-duration: 25s;
+        }
+        .shape-2 {
+            width: 400px;
+            height: 200px;
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%); /* Retângulo inclinado */
+            bottom: -20%;
+            right: -10%;
+            animation-name: moveShape2;
+            animation-duration: 20s;
+        }
+        .shape-3 {
+            width: 250px;
+            height: 250px;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); /* Pentágono */
+            top: 20%;
+            right: -10%;
+            animation-name: moveShape3;
+            animation-duration: 30s;
+        }
+        .shape-4 {
+            width: 350px;
+            height: 150px;
+            background-color: var(--pink); /* Outra cor para destaque */
+            opacity: 0.08;
+            border-radius: 10px;
+            bottom: 10%;
+            left: -10%;
+            animation-name: moveShape4;
+            animation-duration: 22s;
+        }
+
+        @keyframes moveShape1 {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+            25% { transform: translate(20vw, 10vh) rotate(90deg); opacity: 0.15; }
+            50% { transform: translate(40vw, 0) rotate(180deg); opacity: 0.1; }
+            75% { transform: translate(20vw, -10vh) rotate(270deg); opacity: 0.15; }
+            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.1; }
+        }
+        @keyframes moveShape2 {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+            25% { transform: translate(-10vw, -15vh) rotate(45deg); opacity: 0.15; }
+            50% { transform: translate(-20vw, 0) rotate(90deg); opacity: 0.1; }
+            75% { transform: translate(-10vw, 15vh) rotate(135deg); opacity: 0.15; }
+            100% { transform: translate(0, 0) rotate(180deg); opacity: 0.1; }
+        }
+        @keyframes moveShape3 {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+            30% { transform: translate(-15vw, 10vh) scale(1.1); opacity: 0.12; }
+            60% { transform: translate(-30vw, 0) scale(1); opacity: 0.1; }
+            90% { transform: translate(-15vw, -10vh) scale(0.9); opacity: 0.12; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+        }
+        @keyframes moveShape4 {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.08; }
+            40% { transform: translate(25vw, -10vh) rotate(120deg); opacity: 0.12; }
+            80% { transform: translate(50vw, 0) rotate(240deg); opacity: 0.08; }
+            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.08; }
+        }
+
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Garante que o conteúdo fique acima do fundo animado */
             text-align: center;
+            width: 100%; /* Ajuste para centralizar o conteúdo */
         }
 
         .hero h1 {
@@ -821,6 +902,11 @@
             .why-content p {
                 font-size: 1.1rem;
             }
+
+            /* Esconde algumas formas em mobile para não sobrecarregar */
+            .shape-3, .shape-4 {
+                display: none;
+            }
         }
 
     </style>
@@ -842,6 +928,12 @@
     <main>
 
         <section class="hero">
+            <div class="animated-background">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
             <div class="container">
                 <div class="hero-content">
                     <h1>RevoClash</h1>
@@ -949,7 +1041,7 @@
                     </p>
                     <p>
                         Nossa tecnologia usa <strong>engenharia reversa avançada</strong> para suportar jogos que não possuem API oficial.
-                        Isso significa que você pode competir nos seus games favoritos, mesmo sem integração direta.
+                        Isso significa que você pode competir nos seus seus games favoritos, mesmo sem integração direta.
                     </p>
                     <div class="tech-badges">
                         <span class="tech-badge">Nicho Competitivo</span>
@@ -1004,7 +1096,7 @@
                     <div class="benefit-card">
                         <div class="benefit-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c.966 0 1.899.199 2.78.547M12 20.25a8.25 8.25 0 00-2.78.547m2.78-.547a8.25 8.25 0 01-2.78.547m2.78.547c.966 0 1.899.199 2.78.547m-5.56 0a8.25 8.25 0 00-2.78.547m2.78-.547a8.25 8.25 0 01-2.78.547m2.78.547c.966 0 1.899.199 2.78.547m-5.56 0a8.25 8.25 0 00-2.78.547m2.78-.547a8.25 8.25 0 01-2.78.547m2.78.547c-.966 0-1.899.199-2.78.547m5.56 0a8.25 8.25 0 01-2.78.547m2.78-.547a8.25 8.25 0 00-2.78.547m2.78.547c-.966 0-1.899.199-2.78.547m5.56 0a8.25 8.25 0 01-2.78.547m2.78-.547a8.25 8.25 0 00-2.78.547m2.78.547c.966 0 1.899.199 2.78.547M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c.966 0 1.899.199 2.78.547M12 20.25a8.25 8.25 0 00-2.78.547m2.78-.547a8.25 8.25 0 01-2.78.547m2.78.547c.966 0 1.899.199 2.78.547m-5.56 0a8.25 8.25 0 00-2.78.547m2.78-.547a8.25 8.25 0 01-2.78.547m2.78.547c.966 0 1.899.199 2.78.547M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                             </svg>
                         </div>
                         <h3>Comunidade Forte</h3>
@@ -1151,7 +1243,7 @@
 
             <div class="social-links">
                 <a href="#" class="social-icon" aria-label="Discord">
-                    <svg viewBox="0 0 245 240"><path d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zM140.9 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path d="M189.5 20.1l-32.4 171.5-33.5-16.5-5.4-14.5c-3.6 4.6-10.6 10.9-22.1 10.9-16.5 0-28.3-13.6-28.3-29.5 0-16 11.4-29.5 27.6-29.5 10.8 0 18.2 5.7 22 9.1l2.2-1.6-8.9-12.8-21.6-30.9c-1.5-2.2-3.1-4.2-4.6-6.1-7-10-16-10-16-10l-1.3-.2c-12.2 0-23.4 9.3-25.9 21.6l-32.4 171.5c-4.4 23.4 15.3 40.8 38.3 40.8 7.3 0 14.1-2.5 19.6-6.9l33.5-16.5 5.4-14.5c3.6 4.6 10.6 10.9 22.1 10.9 16.5 0 28.3-13.6 28.3-29.5 0-16-11.4-29.5-27.6-29.5 10.8 0 18.2 5.7 22 9.1l2.2-1.6 8.9-12.8 21.6-30.9c1.5-2.2 3.1-4.2 4.6-6.1 7-10 16-10 16-10l1.3-.2c12.2 0 23.4 9.3 25.9 21.6z"/></svg>
+                    <svg viewBox="0 0 245 240"><path d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zM140.9 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path d="M189.5 20.1l-32.4 171.5-33.5-16.5-5.4-14.5c-3.6 4.6-10.6 10.9-22.1 10.9-16.5 0-28.3-13.6-28.3-29.5 0-16 11.4-29.5 27.6-29.5 10.8 0 18.2 5.7 22 9.1l2.2-1.6-8.9-12.8-21.6-30.9c-1.5-2.2-3.1-4.2-4.6-6.1-7-10-16-10-16-10l-1.3-.2c-12.2 0-23.4 9.3-25.9 21.6l-32.4 171.5c-4.4 23.4 15.3 40.8 38.3 40.8 7.3 0 14.1-2.5 19.6-6.9l33.5-16.5 5.4-14.5c3.6 4.6 10.6 10.9 22.1 10.9 16.5 0 28.3-13.6 28.3-29.5 0-16-11.4-29.5-27.6-29.5 10.8 0 18.2 5.7 22 9.1l2.2-1.6-8.9-12.8-21.6-30.9c1.5-2.2 3.1-4.2 4.6-6.1-7-10-16-10-16-10l1.3-.2c12.2 0 23.4 9.3 25.9 21.6z"/></svg>
                 </a>
                 <a href="#" class="social-icon" aria-label="Instagram">
                     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.949.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
